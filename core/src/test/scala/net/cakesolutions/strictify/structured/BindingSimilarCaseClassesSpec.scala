@@ -1,6 +1,7 @@
 package net.cakesolutions.strictify.structured
 
 import net.cakesolutions.strictify.BaseBindingSpec
+import net.cakesolutions.strictify.core.Binding
 
 case class Strict(a: Int, b: String, c: Seq[Boolean])
 case class Loose(a: Option[Int], b: Option[String], c: Seq[Option[Boolean]])
@@ -75,6 +76,13 @@ class StrictifySimilarCaseClassesSpec
             )
           )
         )
+      )
+    }
+    "binding" in {
+      implicit val binding = Binding.instance[Strict, Loose]
+      checkBinding(
+        Strict(1, "b", Seq(false)),
+        Loose(Some(1), Some("b"), Seq(Some(false)))
       )
     }
   }

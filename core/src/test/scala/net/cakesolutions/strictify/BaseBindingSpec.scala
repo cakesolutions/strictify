@@ -1,6 +1,6 @@
 package net.cakesolutions.strictify
 
-import net.cakesolutions.strictify.core.{ Loosen, Strictify }
+import net.cakesolutions.strictify.core.{ Binding, Loosen, Strictify }
 import org.scalatest.{ FreeSpec, Matchers }
 
 trait BaseBindingSpec extends FreeSpec with Matchers {
@@ -13,4 +13,8 @@ trait BaseBindingSpec extends FreeSpec with Matchers {
     Right(loose) shouldBe strictify(loose).map(loosen.apply)
     Right(strict) shouldBe strictify(loosen(strict))
   }
+
+  def checkBinding[S, L](strict: S, loose: L)(
+    implicit binding: Binding.Aux[S, L]
+  ) = check(strict, loose)(binding.strictify, binding.loosen)
 }
