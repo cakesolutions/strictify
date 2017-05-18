@@ -1,0 +1,7 @@
+package net.cakesolutions.strictify
+
+import net.cakesolutions.strictify.structured.BindingSimilarCaseClassesImplicits
+
+trait DefaultBindingConfig extends BindingSimilarCaseClassesImplicits
+
+object DefaultBindingConfig extends DefaultBindingConfig
