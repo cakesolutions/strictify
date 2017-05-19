@@ -1,4 +1,4 @@
-package net.cakesolutions.strictify.refined
+package net.cakesolutions.strictify.scalapb
 
 import eu.timepit.refined.api.{RefType, Refined, Validate}
 import net.cakesolutions.strictify.core._
