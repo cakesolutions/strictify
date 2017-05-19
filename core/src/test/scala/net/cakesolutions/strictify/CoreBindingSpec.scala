@@ -1,5 +1,7 @@
 package net.cakesolutions.strictify
 
+import net.cakesolutions.strictify.testkit.BaseBindingSpec
+
 class CoreBindingSpec extends BaseBindingSpec {
   "Core Bindings should" - {
     "convert Option of" - {

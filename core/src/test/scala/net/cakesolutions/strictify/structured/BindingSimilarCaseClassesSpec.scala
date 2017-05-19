@@ -1,7 +1,7 @@
 package net.cakesolutions.strictify.structured
 
-import net.cakesolutions.strictify.BaseBindingSpec
 import net.cakesolutions.strictify.core.Binding
+import net.cakesolutions.strictify.testkit.BaseBindingSpec
 
 case class Strict(a: Int, b: String, c: Seq[Boolean])
 case class Loose(a: Option[Int], b: Option[String], c: Seq[Option[Boolean]])

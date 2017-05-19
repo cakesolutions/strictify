@@ -1,7 +1,7 @@
-package net.cakesolutions.strictify
+package net.cakesolutions.strictify.testkit
 
-import net.cakesolutions.strictify.core.{ Binding, Loosen, Strictify }
-import org.scalatest.{ FreeSpec, Matchers }
+import net.cakesolutions.strictify.core.{Binding, Loosen, Strictify}
+import org.scalatest.{FreeSpec, Matchers}
 
 trait BaseBindingSpec extends FreeSpec with Matchers {
   def check[S, L](
