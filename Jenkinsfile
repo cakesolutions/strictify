@@ -20,6 +20,8 @@ pipeline {
       }
     }
 
+    // Disabled due to https://github.com/os72/protoc-jar/issues/15
+    /*
     stage('Test Example Apps') {
       steps {
         dir("examples/scalapb-with-refined/"){
@@ -29,6 +31,7 @@ pipeline {
         }
       }
     }
+    */
 
     stage('Publish') {
       steps {
