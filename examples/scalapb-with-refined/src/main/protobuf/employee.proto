@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.example.protocol;
+
+import "google/protobuf/wrappers.proto";
+
+message EmployeeData {
+    // logically required (beware, ScalaPb sets default value to Zero)
+    int32 id = 1;
+
+    // logically required, non-empty
+    // beware: ScalaPb sets default value to empty string
+    // However, our Refined types in the crossponding model should catch this.
+    string name = 2;
+
+    // logically optional, Postive (using Google wrapper to allow optional)
+    google.protobuf.Int32Value age = 20;
+}
