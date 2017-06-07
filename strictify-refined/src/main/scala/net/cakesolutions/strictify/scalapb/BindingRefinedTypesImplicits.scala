@@ -13,6 +13,6 @@ trait LoosenRefinedTypesImplicits extends LoosenInstanceHelpers {
   implicit def loosenToRefined[T, P](implicit v: Validate[T, P]) =
     instance[T Refined P, T](_.value)
 }
-trait BindingSameRefinedTypesImplicits
+trait BindingRefinedTypesImplicits
     extends StrictifyRefinedTypesImplicits
     with LoosenRefinedTypesImplicits
