@@ -5,7 +5,11 @@ trait StrictifyError {
 }
 object StrictifyError {
   case class StringBased(message: String) extends StrictifyError
+  case class ExceptionBased(e: Throwable) extends StrictifyError {
+    override def message: String = e.getMessage
+  }
   def apply(msg: String): StrictifyError = StringBased(msg)
+  def apply(e: Throwable): ExceptionBased = ExceptionBased(e)
 }
 
 /**
