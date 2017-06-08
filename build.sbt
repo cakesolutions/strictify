@@ -15,7 +15,14 @@ lazy val `strictify-refined` = project
 
 
 lazy val `strictify-scalapb` = project
-  .dependsOn(`strictify-core` % "compile->compile;test->test", `strictify-refined` % "test")
+  .dependsOn(`strictify-core` % "compile->compile;test->test", `strictify-refined` % "test", `test-utils` % "test")
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.trueaccord.scalapb" %% "scalapb-runtime" % "0.6.0-pre1"
+    )
+  )
+
+lazy val `test-utils` = project
   .settings(
     libraryDependencies ++= Seq(
       "com.trueaccord.scalapb" %% "scalapb-runtime" % "0.6.0-pre1"
