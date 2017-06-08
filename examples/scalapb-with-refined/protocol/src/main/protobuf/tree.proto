@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.example.protocol;
+
+message Leaf {
+    int32 value = 1;
+}
+
+message Branch {
+    BinaryTree left = 1;
+    BinaryTree right = 2;
+}
+
+message BinaryTree {
+    oneof value {
+        Leaf leaf = 1;
+        Branch branch = 2;
+    }
+}

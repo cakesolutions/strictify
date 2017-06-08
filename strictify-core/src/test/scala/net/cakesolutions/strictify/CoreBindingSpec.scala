@@ -2,7 +2,7 @@ package net.cakesolutions.strictify
 
 import net.cakesolutions.strictify.testkit.BaseBindingSpec
 
-class CoreBindingSpec extends BaseBindingSpec {
+class CoreBindingSpec extends BaseBindingSpec with DefaultBindingConfig {
   "Core Bindings should" - {
     "convert Option of" - {
       "Ints" in check[Int, Option[Int]](1, Some(1))

@@ -5,7 +5,11 @@ trait StrictifyError {
 }
 object StrictifyError {
   case class StringBased(message: String) extends StrictifyError
+  case class ExceptionBased(e: Throwable) extends StrictifyError {
+    override def message: String = e.getMessage
+  }
   def apply(msg: String): StrictifyError = StringBased(msg)
+  def apply(e: Throwable): ExceptionBased = ExceptionBased(e)
 }
 
 /**
@@ -18,44 +22,6 @@ trait Strictify[Strict, Loose] {
 }
 
 object Strictify extends StrictifyInstanceHelpers {
-  implicit def strictifySome[S, L](
-    implicit innerInstance: Strictify[S, L]
-  ) = instance[S, Some[L]](s => innerInstance(s.get))
-
-//  implicit def strictifNone[T] = alwaysErrorInstance[T, None.type]("Option value is unexpectedly empty")
-
-  implicit def strictifyOptions[S, L](
-    implicit innerInstance: Strictify[S, L]
-  ) = instance[S, Option[L]] {
-    case Some(value) => innerInstance(value)
-    case None        => error("Option value is unexpectedly empty")
-  }
-
-  implicit def strictifySeqItems[S, L](
-    implicit itemInstance: Strictify[S, L]
-  ) =
-    instance[Seq[S], Seq[L]](
-      _.map(itemInstance.apply)
-        .foldRight[Either[StrictifyError, Seq[S]]](Right(Seq.empty)) {
-          case (_, Left(e))                => Left(e)
-          case (Left(e), _)                => Left(e)
-          case (Right(item), Right(items)) => Right(item +: items)
-        }
-    )
-
-//  implicit def passthroughSameMonad[M[_], S, L] = // Cats??
-//    instance[M[S], M[L]](Right.apply)
-
-  implicit def passthroughBothOptions[S, L](
-    implicit innerInstance: Strictify[S, L]
-  ) =
-    instance[Option[S], Option[L]](
-      s =>
-        s.map(innerInstance.apply)
-          .map(_.map(Some.apply))
-          .getOrElse(Right(None))
-    )
-
   implicit def passthroughSameType[T] = instance[T, T](Right.apply)
 }
 

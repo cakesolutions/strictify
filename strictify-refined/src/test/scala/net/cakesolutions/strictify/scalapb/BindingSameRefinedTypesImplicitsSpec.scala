@@ -4,10 +4,11 @@ import eu.timepit.refined.api.Refined
 import eu.timepit.refined.auto._
 import eu.timepit.refined.collection.NonEmpty
 import eu.timepit.refined.numeric.Positive
+import net.cakesolutions.strictify.DefaultBindingConfig
 import net.cakesolutions.strictify.structured.{BindingSimilarCaseClassesImplicits, BindingSimilarSealedTraitsImplicits}
 import net.cakesolutions.strictify.testkit.BaseBindingSpec
 
-class StrictifyBindingSpec extends BaseBindingSpec with BindingSameRefinedTypesImplicits with BindingSimilarCaseClassesImplicits with BindingSimilarSealedTraitsImplicits {
+class StrictifyBindingSpec extends BaseBindingSpec with DefaultBindingConfig with BindingRefinedTypesImplicits with BindingSimilarCaseClassesImplicits with BindingSimilarSealedTraitsImplicits {
   "Refined Bindings should" - {
     "Support basic cases" - {
       "Ints" in check[Int Refined Positive, Int](1, 1)

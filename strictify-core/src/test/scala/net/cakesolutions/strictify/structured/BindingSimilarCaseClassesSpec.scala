@@ -1,5 +1,6 @@
 package net.cakesolutions.strictify.structured
 
+import net.cakesolutions.strictify.DefaultBindingConfig
 import net.cakesolutions.strictify.core.Binding
 import net.cakesolutions.strictify.testkit.BaseBindingSpec
 
@@ -8,7 +9,7 @@ case class Loose(a: Option[Int], b: Option[String], c: Seq[Option[Boolean]])
 
 class StrictifySimilarCaseClassesSpec
     extends BaseBindingSpec
-    with BindingSimilarCaseClassesImplicits
+    with DefaultBindingConfig
     with BindingSimilarSealedTraitsImplicits {
   "Case Classes Bindings should support" - {
     "simple case classes" in {
