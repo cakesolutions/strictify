@@ -22,18 +22,17 @@ pipeline {
     }
 
     // Disabled due to https://github.com/os72/protoc-jar/issues/15
-    /*
-    stage('Test Example Apps') {
-      steps {
-        dir("examples/scalapb-with-refined/"){
-          ansiColor('xterm') {
-            sh "sbt test"
-            junit '**/test-reports/*.xml'
-          }
-        }
-      }
-    }
-    */
+    //
+    //stage('Test Example Apps') {
+    //  steps {
+    //    dir("examples/scalapb-with-refined/"){
+    //      ansiColor('xterm') {
+    //        sh "sbt test"
+    //        junit '**/test-reports/*.xml'
+    //      }
+    //    }
+    //  }
+    //}
 
     stage('Publish') {
       steps {
